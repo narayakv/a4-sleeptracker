@@ -1,20 +1,77 @@
-<ion-header [translucent]="true">
+
+<!-- Main application header -->
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Sleep Tracker</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- Form for recording overnight sleep -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Log Overnight Sleep</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Input for the time the user went to bed -->
+      <ion-item>
+        <ion-input
+          label="Bedtime"
+          labelPlacement="stacked"
+          type="datetime-local"
+          [(ngModel)]="sleepStart">
+        </ion-input>
+      </ion-item>
+
+      <!-- Input for the time the user woke up -->
+      <ion-item>
+        <ion-input
+          label="Wake-up Time"
+          labelPlacement="stacked"
+          type="datetime-local"
+          [(ngModel)]="sleepEnd">
+        </ion-input>
+      </ion-item>
+
+      <!-- Button to validate and save the sleep entry -->
+      <ion-button
+        expand="block"
+        class="ion-margin-top"
+        (click)="logOvernightSleep()">
+        Save Sleep
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Display previously recorded overnight sleep entries -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Sleep History</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+
+        <!-- Display each recorded sleep entry -->
+        @for (entry of overnightSleepData; track $index) {
+          <ion-item>
+            <ion-label>
+              <h2>{{ entry.dateString() }}</h2>
+              <p>{{ entry.summaryString() }}</p>
+            </ion-label>
+          </ion-item>
+        } @empty {
+          <!-- Message displayed when no entries exist -->
+          <p>No sleep entries recorded yet.</p>
+        }
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
+
