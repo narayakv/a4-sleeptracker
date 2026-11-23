@@ -67,39 +67,49 @@ export class HomePage {
 
 	// Validate the entered times and save a new overnight sleep entry
 	logOvernightSleep() {
-    // Make sure the user entered both required times
-    if (!this.sleepStart || !this.sleepEnd) {
-        alert('Please enter both bedtime and wake-up time.');
-        return;
-    }
+		// Prevent logging before saved records finish loading
+		if (!this.sleepService.isStorageReady) {
+			return;
+		}
 
-	// convert the input strings into Date objects
-	const start = new Date(this.sleepStart);
-	const end = new Date(this.sleepEnd);
+		// Make sure the user entered both required times
+		if (!this.sleepStart || !this.sleepEnd) {
+			alert('Please enter both bedtime and wake-up time.');
+			return;
+		}
 
-	// prevent invalid sleep entries where wake-up is before bedtime
-	if (isNaN(start.getTime()) || isNaN(end.getTime()) || end <= start) {
-		alert('Please enter valid times with wake-up after bedtime.');
-		return;
-	}
+		// convert the input strings into Date objects
+		const start = new Date(this.sleepStart);
+		const end = new Date(this.sleepEnd);
 
-	// Create a sleep record and add it to the SleepService
-	const sleepData = new OvernightSleepData(start, end);
- 	this.sleepService.logOvernightData(sleepData);
-	
-	// Clear the input fields after successfully saving the entry
-    this.sleepStart = '';
-    this.sleepEnd = '';
-	}
+		// prevent invalid sleep entries where wake-up is before bedtime
+		if (isNaN(start.getTime()) || isNaN(end.getTime()) || end <= start) {
+			alert('Please enter valid times with wake-up after bedtime.');
+			return;
+		}
 
-	// Retrieve all logged overnight sleep entries for display
-	get overnightSleepData() {
-		return SleepService.AllOvernightData;
+		// Create a sleep record and add it to the SleepService
+		const sleepData = new OvernightSleepData(start, end);
+		this.sleepService.logOvernightData(sleepData);
+		
+		// Clear the input fields after successfully saving the entry
+		this.sleepStart = '';
+		this.sleepEnd = '';
+		}
+
+		// Retrieve all logged overnight sleep entries for display
+		get overnightSleepData() {
+			return SleepService.AllOvernightData;
 	}
 
     // Validate and save a daytime sleepiness entry
     logSleepiness() {
-        // Make sure the selected rating is within the Stanford Scale
+        // Prevent logging before saved records finish loading
+		if (!this.sleepService.isStorageReady) {
+			return;
+		}
+		
+		// Make sure the selected rating is within the Stanford Scale
         if (!Number.isInteger(this.sleepinessRating) ||
             this.sleepinessRating < 1 ||
             this.sleepinessRating > 7) {

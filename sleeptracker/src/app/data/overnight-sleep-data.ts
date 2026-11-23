@@ -10,6 +10,16 @@ export class OvernightSleepData extends SleepData {
 		this.sleepEnd = sleepEnd;
 	}
 
+	// Return the bedtime associated with this sleep record
+	public getSleepStart(): Date {
+		return this.sleepStart;
+	}
+
+	// Return the wake-up time associated with this sleep record
+	public getSleepEnd(): Date {
+		return this.sleepEnd;
+	}
+
 	override summaryString():string {
 		var sleepStart_ms = this.sleepStart.getTime();
 		var sleepEnd_ms = this.sleepEnd.getTime();

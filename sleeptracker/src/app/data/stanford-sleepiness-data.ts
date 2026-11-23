@@ -21,6 +21,16 @@ export class StanfordSleepinessData extends SleepData {
 		this.loggedAt = loggedAt;
 	}
 
+	// Return the Stanford Sleepiness Scale rating
+	public getLoggedValue(): number {
+		return this.loggedValue;
+	}
+
+	// Return the date and time when the sleepiness entry was recorded
+	public getLoggedAt(): Date {
+		return this.loggedAt;
+	}
+
 	override summaryString():string {
 		return this.loggedValue + ": " + StanfordSleepinessData.ScaleValues[this.loggedValue];
 	}

@@ -39,7 +39,8 @@
       <ion-button
         expand="block"
         class="ion-margin-top"
-        (click)="logOvernightSleep()">
+        (click)="logOvernightSleep()"
+        [disabled]="!sleepService.isStorageReady">
         Save Sleep
       </ion-button>
 
@@ -97,7 +98,8 @@
       <ion-button
         expand="block"
         class="ion-margin-top"
-        (click)="logSleepiness()">
+        (click)="logSleepiness()"
+        [disabled]="!sleepService.isStorageReady">
         Save Sleepiness
       </ion-button>
 
