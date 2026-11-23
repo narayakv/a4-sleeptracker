@@ -21,6 +21,7 @@ import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['home.page.scss'],
   imports: [
     FormsModule,
+	DatePipe,
     IonHeader,
     IonToolbar,
     IonTitle,

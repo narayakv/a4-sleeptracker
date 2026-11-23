@@ -153,7 +153,7 @@
         @for (entry of sleepinessData; track $index) {
           <ion-item>
             <ion-label>
-              <h2>{{ entry.dateString() }}</h2>
+              <h2>{{ entry.getLoggedAt() | date:'EEEE, MMMM d, h:mm a' }}</h2>
               <p>{{ entry.summaryString() }}</p>
             </ion-label>
             <ion-button
