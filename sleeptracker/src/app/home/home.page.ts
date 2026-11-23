@@ -130,7 +130,31 @@ export class HomePage {
         this.sleepinessRating = 1;
     }
 
-    // Retrieve all logged daytime sleepiness entries for display
+    // Confirm before deleting an overnight sleep entry
+	deleteOvernightSleep(entry: OvernightSleepData) {
+		// Prevent accidental deletions by asking for confirmatino
+		const confirmed = window.confirm(
+			'Are you sure you want to delete this overnight sleep entry?'
+		);
+
+		if (confirmed) {
+			this.sleepService.deleteOvernightData(entry);
+		}
+	}
+
+	// Confirm before deleting a daytime sleepiness entry
+	deleteSleepiness(entry: StanfordSleepinessData) {
+		// Prevent accidental deletions by asking for confirmation
+		const confirmed = window.confirm(
+			'Are you sure you want to delete this sleepiness entry?'
+		);
+
+		if (confirmed) {
+			this.sleepService.deleteSleepinessData(entry);
+		}
+	}
+	
+	// Retrieve all logged daytime sleepiness entries for display
     get sleepinessData() {
         return SleepService.AllSleepinessData;
     }

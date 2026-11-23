@@ -90,3 +90,15 @@ ion-list ion-item {
   --color: #f4f4ff;
   --border-color: #35445e;
 }
+
+
+/* Make delete buttons distinct from the main save buttons */
+ion-button.delete-button {
+  --background: transparent;
+  --background-hover: rgba(255, 180, 180, 0.1);
+  --color: #ffb4b4;
+  --border-radius: 8px;
+
+  font-weight: 600;
+  min-height: 44px;
+}

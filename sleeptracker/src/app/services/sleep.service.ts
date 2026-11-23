@@ -150,4 +150,54 @@ export class SleepService {
 			void this.saveSleepinessData();
 		}
 	}
+
+	// Remove an overnight sleep entry and update persistent storage
+	public deleteOvernightData(sleepData: OvernightSleepData) {
+		// Do not modify records until storage has finished loading
+		if (!this.isStorageReady) {
+			return;
+		}
+
+		// Find and remove the entry from the overnight sleep history
+		const index = SleepService.AllOvernightData.indexOf(sleepData);
+		if (index === -1) {
+			return;
+		}
+
+		SleepService.AllOvernightData.splice(index, 1);
+
+		// Remove the same entry from the combined sleep history
+		const allIndex = SleepService.AllSleepData.indexOf(sleepData);
+		if (allIndex !== -1) {
+			SleepService.AllSleepData.splice(allIndex, 1);
+		}
+
+		// Save the updated overnight sleep history
+		void this.saveOvernightData();
+	}
+
+	// Remove a daytime sleepiness entry and update persistent storage
+	public deleteSleepinessData(sleepData: StanfordSleepinessData) {
+		// Do not modify records until storage has finished loading
+		if (!this.isStorageReady) {
+			return;
+		}
+
+		// Find and remove the entry from the daytime sleepiness history
+		const index = SleepService.AllSleepinessData.indexOf(sleepData);
+		if (index === -1) {
+			return;
+		}
+
+		SleepService.AllSleepinessData.splice(index, 1);
+
+		// Remove the same entry from the combined sleep history
+		const allIndex = SleepService.AllSleepData.indexOf(sleepData);
+		if (allIndex !== -1) {
+			SleepService.AllSleepData.splice(allIndex, 1);
+		}
+
+		// Save the updated daytime sleepiness history
+		void this.saveSleepinessData();
+	}
 }

@@ -122,6 +122,15 @@
               <h2>{{ entry.dateString() }}</h2>
               <p>{{ entry.summaryString() }}</p>
             </ion-label>
+            <ion-button
+              class="delete-button"
+              slot="end"
+              fill="clear"
+              (click)="deleteOvernightSleep(entry)"
+              [disabled]="!sleepService.isStorageReady"
+              aria-label="Delete overnight sleep entry">
+              Delete
+            </ion-button>
           </ion-item>
         } @empty {
           <p>No sleep entries recorded yet.</p>
@@ -147,6 +156,15 @@
               <h2>{{ entry.dateString() }}</h2>
               <p>{{ entry.summaryString() }}</p>
             </ion-label>
+            <ion-button
+              class="delete-button"
+              slot="end"
+              fill="clear"
+              (click)="deleteSleepiness(entry)"
+              [disabled]="!sleepService.isStorageReady"
+              aria-label="Delete daytime sleepiness entry">
+              Delete
+            </ion-button>
           </ion-item>
         } @empty {
           <p>No sleepiness entries recorded yet.</p>
