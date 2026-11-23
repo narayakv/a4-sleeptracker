@@ -1,4 +1,3 @@
-
 <!-- Main application header -->
 <ion-header>
   <ion-toolbar>
@@ -47,6 +46,64 @@
     </ion-card-content>
   </ion-card>
 
+  <!-- Form for recording daytime sleepiness -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Log Daytime Sleepiness</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Select a rating using the Stanford Sleepiness Scale -->
+      <ion-item>
+        <ion-select
+          label="Sleepiness Rating"
+          labelPlacement="stacked"
+          interface="alert"
+          [(ngModel)]="sleepinessRating">
+
+          <ion-select-option [value]="1">
+            1 - Wide awake and alert
+          </ion-select-option>
+
+          <ion-select-option [value]="2">
+            2 - Functioning well, able to concentrate
+          </ion-select-option>
+
+          <ion-select-option [value]="3">
+            3 - Awake but relaxed
+          </ion-select-option>
+
+          <ion-select-option [value]="4">
+            4 - Somewhat foggy
+          </ion-select-option>
+
+          <ion-select-option [value]="5">
+            5 - Foggy and losing interest
+          </ion-select-option>
+
+          <ion-select-option [value]="6">
+            6 - Sleepy and fighting sleep
+          </ion-select-option>
+
+          <ion-select-option [value]="7">
+            7 - Almost asleep
+          </ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <!-- Save the selected rating with the current timestamp -->
+      <ion-button
+        expand="block"
+        class="ion-margin-top"
+        (click)="logSleepiness()">
+        Save Sleepiness
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
   <!-- Display previously recorded overnight sleep entries -->
   <ion-card>
     <ion-card-header>
@@ -56,7 +113,7 @@
     <ion-card-content>
       <ion-list>
 
-        <!-- Display each recorded sleep entry -->
+        <!-- Display each recorded overnight sleep entry -->
         @for (entry of overnightSleepData; track $index) {
           <ion-item>
             <ion-label>
@@ -65,7 +122,6 @@
             </ion-label>
           </ion-item>
         } @empty {
-          <!-- Message displayed when no entries exist -->
           <p>No sleep entries recorded yet.</p>
         }
 
@@ -73,5 +129,29 @@
     </ion-card-content>
   </ion-card>
 
-</ion-content>
+  <!-- Display previously recorded daytime sleepiness entries -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Sleepiness History</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
+      <ion-list>
+
+        <!-- Display each recorded sleepiness rating -->
+        @for (entry of sleepinessData; track $index) {
+          <ion-item>
+            <ion-label>
+              <h2>{{ entry.dateString() }}</h2>
+              <p>{{ entry.summaryString() }}</p>
+            </ion-label>
+          </ion-item>
+        } @empty {
+          <p>No sleepiness entries recorded yet.</p>
+        }
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -12,7 +12,9 @@ import {
     IonItem,
     IonLabel,
     IonInput,
-    IonList
+    IonList,
+	IonSelect,
+	IonSelectOption
 } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
@@ -38,13 +40,18 @@ import { FormsModule } from '@angular/forms';
     IonItem,
     IonLabel,
     IonInput,
-    IonList
+    IonList,
+	IonSelect,
+	IonSelectOption
 ],
 })
 export class HomePage {
 	// Store the user's bedtimem and wake-up time
 	sleepStart: string = '';
 	sleepEnd: string = '';
+	// Store the user's selected Stanford Sleepiness Scale rating
+	sleepinessRating: number = 1;
+
 	constructor(public sleepService:SleepService) {
 
 	}
@@ -89,4 +96,33 @@ export class HomePage {
 	get overnightSleepData() {
 		return SleepService.AllOvernightData;
 	}
+
+    // Validate and save a daytime sleepiness entry
+    logSleepiness() {
+        // Make sure the selected rating is within the Stanford Scale
+        if (!Number.isInteger(this.sleepinessRating) ||
+            this.sleepinessRating < 1 ||
+            this.sleepinessRating > 7) {
+            alert('Please select a sleepiness rating between 1 and 7.');
+            return;
+        }
+
+        // Create a sleepiness record using the current date and time
+        const sleepData = new StanfordSleepinessData(
+            this.sleepinessRating,
+            new Date()
+        );
+
+        // Save the new entry using the existing SleepService
+        this.sleepService.logSleepinessData(sleepData);
+
+        // Reset the selected rating after saving
+        this.sleepinessRating = 1;
+    }
+
+    // Retrieve all logged daytime sleepiness entries for display
+    get sleepinessData() {
+        return SleepService.AllSleepinessData;
+    }
+
 }
