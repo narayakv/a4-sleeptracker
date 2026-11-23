@@ -1,2 +1,49 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+
+/* Custom theme colors for the Sleep Tracker */
+:root {
+  /* Midnight blue for primary buttons and interactive elements */
+  --ion-color-primary: #394b91;
+  --ion-color-primary-rgb: 57, 75, 145;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #324280;
+  --ion-color-primary-tint: #4d5d9c;
+
+  /* Lavender accent for secondary elements */
+  --ion-color-secondary: #a78bfa;
+  --ion-color-secondary-rgb: 167, 139, 250;
+  --ion-color-secondary-contrast: #161226;
+  --ion-color-secondary-contrast-rgb: 22, 18, 38;
+  --ion-color-secondary-shade: #937bdc;
+  --ion-color-secondary-tint: #b097fb;
+
+  /* Soft background and readable text */
+  --ion-background-color: #f3f1ff;
+  --ion-text-color: #24243b;
+
+  /* White cards with subtle contrast */
+  --ion-card-background: #ffffff;
+}
+
+
+/* Custom midnight theme for the Sleep Tracker */
+:root {
+  /* Deep navy background */
+  --ion-background-color: #10182b;
+  --ion-background-color-rgb: 16, 24, 43;
+
+  /* Light text for readability */
+  --ion-text-color: #f4f4ff;
+  --ion-text-color-rgb: 244, 244, 255;
+
+  /* Slightly lighter cards for visual separation */
+  --ion-card-background: #1c2942;
+
+  /* Dark input surfaces */
+  --ion-item-background: #1c2942;
+
+  /* Subtle dividers */
+  --ion-border-color: #35445e;
+}
