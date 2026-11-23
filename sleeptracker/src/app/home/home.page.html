@@ -7,6 +7,49 @@
 
 <ion-content class="ion-padding">
 
+<!-- Dashboard showing the user's most recent sleep information -->
+<section class="sleep-dashboard">
+  <div class="dashboard-intro">
+    <p class="dashboard-eyebrow">YOUR SLEEP AT A GLANCE</p>
+    <h1>Rest deeper, wake brighter.</h1>
+    <p class="dashboard-subtitle">
+      Track your rest and see how you feel throughout the day.
+    </p>
+  </div>
+
+  <!-- Display the latest overnight sleep and sleepiness records -->
+  <ion-card class="dashboard-card">
+    <ion-card-content>
+      <p class="dashboard-eyebrow">MOST RECENT SLEEP</p>
+
+      @if (latestOvernightSleep; as sleep) {
+        <h2 class="dashboard-value">{{ sleep.summaryString() }}</h2>
+        <p class="dashboard-detail">{{ sleep.dateString() }}</p>
+      } @else {
+        <h2 class="dashboard-value">No sleep logged yet</h2>
+        <p class="dashboard-detail">Record your first night's sleep below.</p>
+      }
+
+      <div class="dashboard-divider"></div>
+
+      <p class="dashboard-eyebrow">LATEST SLEEPINESS</p>
+
+      @if (latestSleepiness; as sleepiness) {
+        <h2 class="dashboard-value">
+          {{ sleepiness.getLoggedValue() }} / 7
+        </h2>
+        <p class="dashboard-detail">
+          {{ sleepiness.getLoggedAt() | date:'MMM d, h:mm a' }}
+        </p>
+      } @else {
+        <h2 class="dashboard-value">No rating logged yet</h2>
+        <p class="dashboard-detail">Log your daytime sleepiness below.</p>
+      }
+    </ion-card-content>
+  </ion-card>
+</section>
+
+  
   <!-- Form for recording overnight sleep -->
   <ion-card>
     <ion-card-header>

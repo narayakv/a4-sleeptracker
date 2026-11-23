@@ -102,3 +102,84 @@ ion-button.delete-button {
   font-weight: 600;
   min-height: 44px;
 }
+
+
+/* Add spacing and hierarchy to the sleep dashboard */
+.sleep-dashboard {
+  margin: 20px 0 28px;
+}
+
+/* Introduce the app with a heading */
+.dashboard-intro {
+  padding: 8px 8px 16px;
+}
+
+.dashboard-intro h1 {
+  color: #f4f4ff;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 8px 0 12px;
+}
+
+/* Use labels to distinguish dashboard information */
+.dashboard-eyebrow {
+  color: #c4b5fd;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+/* Keep the introductory description readable */
+.dashboard-subtitle {
+  color: #c5c9df;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Give the summary card a slightly different appearance */
+ion-card.dashboard-card {
+  --background: #253451;
+  border: 1px solid #52658a;
+  border-radius: 20px;
+  margin: 12px 0 0;
+  padding: 8px 4px;
+}
+
+/* Emphasize the most important sleep statistics */
+.dashboard-value {
+  color: #f4f4ff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 12px 0 6px;
+}
+
+/* Display the date or supporting information */
+.dashboard-detail {
+  color: #c5c9df;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Separate the two dashboard statistics */
+.dashboard-divider {
+  height: 1px;
+  background: #52658a;
+  margin: 22px 0;
+}
+
+/* Keep the dashboard readable on narrow phones */
+@media (max-width: 380px) {
+  .dashboard-intro h1 {
+    font-size: 26px;
+  }
+
+  .dashboard-value {
+    font-size: 24px;
+  }
+}
+

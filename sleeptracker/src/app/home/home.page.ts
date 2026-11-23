@@ -132,6 +132,38 @@ export class HomePage {
         this.sleepinessRating = 1;
     }
 
+	// Retrieve the most recently recorded overnight sleep entry
+	get latestOvernightSleep(): OvernightSleepData | null {
+		const entries = SleepService.AllOvernightData;
+
+		if (entries.length === 0) {
+			return null;
+		}
+
+		// Find the entry with the most recent bedtime
+		return entries.reduce((latest, entry) =>
+			entry.getSleepStart().getTime() > latest.getSleepStart().getTime()
+				? entry
+				: latest
+		);
+	}
+
+	// Retrieve the most recently recorded daytime sleepiness entry
+	get latestSleepiness(): StanfordSleepinessData | null {
+		const entries = SleepService.AllSleepinessData;
+
+		if (entries.length === 0) {
+			return null;
+		}
+
+		// Find the entry with the most recent timestamp
+		return entries.reduce((latest, entry) =>
+			entry.getLoggedAt().getTime() > latest.getLoggedAt().getTime()
+				? entry
+				: latest
+		);
+	}
+
     // Confirm before deleting an overnight sleep entry
 	deleteOvernightSleep(entry: OvernightSleepData) {
 		// Prevent accidental deletions by asking for confirmatino
