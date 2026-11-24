@@ -164,6 +164,8 @@
             <ion-label>
               <h2>{{ entry.dateString() }}</h2>
               <p>{{ entry.summaryString() }}</p>
+              <p>Bedtime: {{ entry.getSleepStart() | date:'MMM d, h:mm a' }}</p>
+              <p>Wake-up: {{ entry.getSleepEnd() | date:'MMM d, h:mm a' }}</p>
             </ion-label>
             <ion-button
               class="delete-button"
